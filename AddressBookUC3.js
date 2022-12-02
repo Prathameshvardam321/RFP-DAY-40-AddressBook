@@ -41,7 +41,7 @@ class Contact{
         return this._address
     }
     set city(city) {
-        let nameRegex = RegExp('^[A-Za-z]{4,}$');
+        let cityRegex = RegExp('^[A-Za-z]{4,}$');
         if(nameRegex.test(city)){
             this._city = city;
         }
@@ -51,7 +51,7 @@ class Contact{
         return this._city
     }
     set state(state) {
-        let nameRegex = RegExp('^[A-Za-z]{4,}$');
+        let stateRegex = RegExp('^[A-Za-z]{4,}$');
         if(nameRegex.test(state)){
             this._state = state;
         }
