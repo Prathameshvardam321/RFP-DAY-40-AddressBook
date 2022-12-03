@@ -1,0 +1,183 @@
+class Contact{
+    constructor(...params){
+        this.firstName = params[0];
+        this.lastName = params[1];
+        this.address = params[2];
+        this.city = params[3];
+        this.state = params[4];
+        this.zip = params[5];
+        this.phoneNumber = params[6];
+        this.email = params[7];
+    }
+    set firstName(firstName) {
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+        if(nameRegex.test(firstName)){
+            this._firstName = firstName;
+        }
+        else throw 'First name is Incorrect !'
+    }
+    get firstName(){
+        return this._firstName
+    }
+    set lastName(lastName) {
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{3,}$');
+        if(nameRegex.test(lastName)){
+            this._lastName = lastName;
+        }
+        else throw 'Last name is Incorrect !'
+    }
+    get lastName(){
+        return this._lastName
+    }
+    set address(address) {
+        let nameRegex = RegExp('^([A-Za-z]?[: :]?){4,}$');
+        if(nameRegex.test(address)){
+            this._address = address;
+        }
+        else throw 'Address is Incorrect !'
+    }
+    get address(){
+        return this._address
+    }
+    set city(city) {
+        let nameRegex = RegExp('^[A-Za-z]{4,}$');
+        if(nameRegex.test(city)){
+            this._city = city;
+        }
+        else throw 'City is Incorrect !'
+    }
+    get city(){
+        return this._city
+    }
+    set state(state) {
+        let nameRegex = RegExp('^[A-Za-z]{4,}$');
+        if(nameRegex.test(state)){
+            this._state = state;
+        }
+        else throw 'State is Incorrect !'
+    }
+    get state(){
+        return this._state
+    }
+    set zip(zip) {
+        let nameRegex = RegExp('^[0-9]{5,10}$');
+        if(nameRegex.test(zip)){
+            this._zip = zip;
+        }
+        else throw 'Zipcode is Incorrect !'
+    }
+    get zip(){
+        return this._zip
+    }
+    set phoneNumber(phoneNumber) {
+        let nameRegex = RegExp('^([0-9]{2})?[0-9]{10}$');
+        if(nameRegex.test(phoneNumber)){
+            this._phoneNumber = phoneNumber;
+        }
+        else throw 'Phone number is Incorrect !'
+    }
+    get phoneNumber(){
+        return this._phoneNumber
+    }
+    set email(email) {
+        let nameRegex = RegExp('^[A-Za-z]{3,}[.]?[a-z0-9]*@([a-z]+)[.]?[a-z]+[.]?[a-z]*$');
+        if(nameRegex.test(email)){
+            this._email = email;
+        }
+        else throw 'Email is Incorrect !'
+    }
+    get email(){
+        return this._email
+    }
+    toString(){
+        return (`First Name: ${this.firstName} \nLast Name: ${this.lastName}\nAddress: ${this.address}\nCity : ${this.city}\nState : ${this.state}\nZip code : ${this.zip}\nPhone Number : ${this.phoneNumber}\nEmail ID: ${this.email}`)
+    }
+}
+
+let addressBook1 = new Array()
+try{
+    function remove(addressBook1,name){
+        let notify = 1
+        let c
+            addressBook1.forEach(x=>{if(x.firstName==name){
+                c=x
+                notify=2}})
+        if(notify==2){
+           let k = addressBook1.indexOf(c)
+            addressBook1.splice(k,1)
+            console.log(name,"Removed successfully")
+            console.log(addressBook1.forEach(x=>console.log(x.toString())))
+        }else{
+            console.log("Not found")
+        }
+           
+        }
+      function add(addressBook1,contact1){
+        let int = 1
+        addressBook1.filter(x=>{if(x.firstName==contact1.firstName){int=2}})
+        if(int==2){
+            console.log("Name already exists")
+            console.log("Not added")
+        }else{
+            addressBook1.push(contact1)
+        }
+        }
+        function searchByState(addressBook1,searchName){
+            addressBook1.filter(x=>x.state==searchName).forEach(x=>console.log(x.toString()))
+        }
+        function searchByCity(addressBook1,searchName){
+            addressBook1.filter(x=>x.city==searchName).forEach(x=>console.log(x.toString()))
+        }
+        function countByCity(addressBook1,searchName){
+           let countOfCity = addressBook1.filter(x=>x.city==searchName).reduce(x=>{return x=x+1},0)
+           console.log("Number of person by",searchName,countOfCity)
+        }
+        function countByState(addressBook1,searchName){
+            let countOfState = addressBook1.filter(x=>x.state==searchName).reduce(x=>{return x=x+1},0)
+            console.log("Number of person by",searchName,countOfState)
+        }
+        function sortByName(){
+            addressBook1.sort().forEach(x=>console.log(x.toString()))
+        }
+        function sortByCity(){
+            addressBook1.sort(function(a,b){ if (a.city < b.city)
+                   return -1;
+                else if (a.city == b.city)
+                   return 0;
+                else
+                   return 1;
+            }).forEach(x=>console.log(x.toString()))
+        }
+        function sortByZip(){
+            addressBook1.sort(function(a,b){
+                if(a.zip<b.zip){
+                    return -1
+                }else if(a.zip==b.zip){
+                    return 0
+                }else{
+                    return 1
+                }
+        }).forEach(x=>console.log(x.toString()))
+        }
+        function sortByState(){
+            addressBook1.sort(function(a,b){ if (a.state < b.state)
+                   return -1;
+                else if (a.state == b.state)
+                   return 0;
+                else
+                   return 1;
+            }).forEach(x=>console.log(x.toString()))
+        }
+      
+    let prathmesh =new Contact("Prathmesh","Vardam","MaharashtraNagar","Mumbai","Mahrashtra",40107,9930516251,"Prathamesh@gmail.com")
+    let pranit =new Contact("Pranit","Waghmare","MaharashtraNagar","Tumbai","Mahrashtra",401078,8423456789,"Pranit11@gmail.com")
+    let nishant =new Contact("Nishant","Kadam","Hanuman Nagar","Coimbtore","Telangana",401071,8930516201,"NishantKadam@gmail.com")
+    addressBook1.push(prathmesh)
+    addressBook1.push(pranit)   
+    add(addressBook1,nishant)
+    sortByZip()
+    sortByCity()
+    sortByState()
+}catch(e){
+    console.error(e)
+}
